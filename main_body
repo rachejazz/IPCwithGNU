@@ -1,0 +1,26 @@
+While gorging down your favourite snack, what tells your hands to stop before you die from overeating? Well thanks to our operating systems, we never need to check over our process queue to ensure everything is working smooth.
+<ENTER OVEREATING GIF>
+So does this box thingy in our hands also needs a check over it's workflow? What stops them from *dying* from overeating? While diagnosing disorders in us doesn't require anatomizing ourselves, in the IT world there are tools that can be used to troubleshoot or "Look What's Inside?" any operating system and how process communication work.
+Enter the stage `The 3G: GCC GDB GCOV`. Who are they? Here's a short profile bio for each:
+GCC
+GDB
+GCOV
+<ENTER 3 DETECTIVES GIF>
+To investigate their business and their roles in systems development, we will now a create a tiny subsystem of 2 processes communicating with each other. I will summon the powers of IPC and SIGNALs to help me make them talk.
+<SOURCE FOR IPC and SIGNALS>:
+proc1 proc2<USE GIST.GITHUB TO UPLOAD THE PROGRAMS>
+(Since showing the processes here will deviate from the purpose of this tutorial, I've moved them to <inset link>. Go check out if you're interested on the working, which is by the way also elaborated there. For the sake of this tutorial, we can work on short snippets taken from them.)
+
+<little bit about how they are communicating>
+
+Alright! Now that our mini ecosystem is created, we employ the 3G to analyse what's going on:
+1.Role of a compiler
+2.How much code is getting executed? waste of code, waste of resources examined
+3.The leader comes at last: Tracing memory, usage of injecting code after compiling
+<2-3 Screen records>
+/*---------------------*/
+|	 		|
+|	main_ body	|
+|			|
+/*---------------------*/
+There you go! Legends say that 3G is always around you. Theye're just a few commmands away. Give them a call whenever you need.

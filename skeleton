@@ -1,0 +1,19 @@
+2 small processes ( one triggering the other observing behavior)
+>P1 from gcov 
+>P2 Heisenberg
+>P3 driver?
+compiled using gcc
+show coverage using gcov
+gdb working diff in 3 procs:
+>signal handling using gdb
+>code injection while run, printing values
+>tracing and breaking(refer to heisenberg debugging)
+>info registers
+memory management using gcov and gdb
+gcc discussing flags required for each examinition
+Call them 2 process and a mini OS(subystem)
+analysis using 3G rulers of C
+
+proc1 waits for signal from proc2...if it doesn't get one , sends itself. Flush.gcov in this prog
+proc2 waits for the user to input data, searches it..sends different signals for yes and no
+apply tracing here.

@@ -1,0 +1,24 @@
+        -:    0:Source:gcov1.c
+        -:    0:Graph:gcov1.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    0:Programs:0
+        -:    1:#include <stdio.h>
+        -:    2:int hcf(int n1, int n2);
+    #####:    3:int main() {
+    #####:    4:	printf("HELLO STUPID WORLD");
+        -:    5:    int n1, n2;
+    #####:    6:    printf("Enter two positive integers: ");
+    #####:    7:    scanf("%d %d", &n1, &n2);
+    #####:    8:    printf("G.C.D of %d and %d is %d.", n1, n2, hcf(n1, n2));
+    #####:    9:    return 0;
+        -:   10:}
+        -:   11:
+    #####:   12:int hcf(int n1, int n2) {
+    #####:   13:    if (n2 != 0)
+    #####:   14:        return hcf(n2, n1 % n2);
+        -:   15:    else
+    #####:   16:        return n1;
+        -:   17:}
+        -:   18:
+        -:   19:

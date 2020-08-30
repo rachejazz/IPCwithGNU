@@ -1,0 +1,94 @@
+        -:    0:Source:neighbour1.c
+        -:    0:Graph:neighbour1.gcno
+        -:    0:Data:neighbour1.gcda
+        -:    0:Runs:5
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include <stdlib.h>
+        -:    3:#include <signal.h>
+        -:    4:#include <unistd.h>
+        -:    5:#include <sys/types.h>
+        -:    6:#include <sys/ipc.h>
+        -:    7:#include <sys/shm.h>
+        -:    8:
+        -:    9:int shmid;
+        -:   10:pid_t *shmptr;
+        -:   11:void __gcov_flush(void);
+        -:   12:
+    #####:   13:void sig1_handler(volatile sig_atomic_t usr_sig)
+        -:   14:{
+    #####:   15:	signal(usr_sig, SIG_IGN);
+    #####:   16:	printf("Received instructions %u\nDumping neighbour's fight logs.\n I am happy you erred\n",usr_sig);
+    #####:   17:	__gcov_flush();
+    #####:   18:	shmdt(shmptr);
+    #####:   19:	shmctl(shmid, IPC_RMID, NULL);
+    #####:   20:	exit(1);
+        -:   21:}
+        -:   22:
+    #####:   23:void sig2_handler(volatile sig_atomic_t usr_sig)
+        -:   24:{
+    #####:   25:	signal(usr_sig, SIG_IGN);
+    #####:   26:	printf("Received instructions %u\nDumping neighbour's complaints logs.\n I am kidnapped.\n",usr_sig);
+    #####:   27:	__gcov_flush();
+    #####:   28:	shmdt(shmptr);
+    #####:   29:	shmctl(shmid, IPC_RMID, NULL);
+    #####:   30:	exit(2);
+        -:   31:}
+        -:   32:
+        2:   33:void sig3_handler(volatile sig_atomic_t usr_sig)
+        -:   34:{
+        2:   35:	signal(usr_sig, SIG_IGN);
+        2:   36:	printf("Received instructions %u\nDumping neighbour's quarrel logs.\n I am killed\n",usr_sig);
+        2:   37:	__gcov_flush();
+        2:   38:	shmdt(shmptr);
+        2:   39:	shmctl(shmid, IPC_RMID, NULL);
+        2:   40:	exit(3);
+        -:   41:}
+        -:   42:
+        3:   43:void sig4_handler(volatile sig_atomic_t usr_sig)
+        -:   44:{
+        3:   45:	signal(usr_sig, SIG_IGN);
+        3:   46:	printf("Received instruction %u\ndumping error logs.\n I am spared\n",usr_sig);
+        3:   47:	__gcov_flush();
+        3:   48:	shmdt(shmptr);
+        3:   49:	shmctl(shmid, IPC_RMID, NULL);
+        3:   50:	exit(4);
+        -:   51:}
+        -:   52:
+        5:   53:void main(int argc, char **argv[])
+        -:   54:{
+        -:   55:	int i;
+        5:   56:	pid_t pid=getpid();
+        -:   57:	key_t keygen;
+        -:   58:
+        5:   59:	if (signal(SIGUSR1, sig1_handler)==SIG_ERR){
+    #####:   60:		printf("Error1. interrupt and try again\n");
+        -:   61:		//signal(SIGINT, sigdf_handler);
+    #####:   62:		exit(0);
+        -:   63:	}
+        5:   64:	if (signal(SIGINT, sig2_handler)==SIG_ERR){
+    #####:   65:		printf("Error2. interrupt and try again\n");
+        -:   66:		//signal(SIGINT, sigdf_handler);
+    #####:   67:		exit(0);
+        -:   68:	}
+        5:   69:	if (signal(SIGQUIT, sig3_handler)==SIG_ERR){
+    #####:   70:		printf("Error3. interrupt and try again\n");
+        -:   71:		//signal(SIGINT, sigdf_handler);
+    #####:   72:		exit(0);
+        -:   73:	}
+        5:   74:	if (signal(SIGUSR2, sig4_handler)==SIG_ERR){
+    #####:   75:		printf("Error4. interrupt and try again\n");
+        -:   76:		//signal(SIGINT, sigdf_handler);
+    #####:   77:		exit(0);
+        -:   78:	}
+        -:   79:	
+        5:   80:	keygen=ftok(".",'s');
+        5:   81:	shmid=shmget(keygen, sizeof(pid_t), IPC_CREAT | 0666);
+        5:   82:	shmptr=(pid_t *) shmat(shmid, NULL, 0);
+        5:   83:	*shmptr=pid;
+      145:   84:	for(i=0; ;i++){
+      285:   85:		printf("I am Neighbour %d:%dI like to annoy you\n",pid,i);
+      145:   86:		sleep(2);}
+        -:   87:	//signal(SIGINT, sigdf_handler);
+        -:   88:}
+        -:   89:
