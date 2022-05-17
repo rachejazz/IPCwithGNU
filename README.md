@@ -2,7 +2,7 @@
 
 ### Main blog content stored for copy
 
-Blog available at [http://bit.ly/IPCwithGNU](https://rachejazz.me/2020/08/30/IPCWithGNU.html)
+Blog available at [bit.ly/IPCwithGNU](https://rachejazz.me/2019/08/30/IPCWithGNU.html)
 
 This repo contains 2 processes communicating over each other using shared memory segments and signal transmission.
 
